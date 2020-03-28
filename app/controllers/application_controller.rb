@@ -39,9 +39,9 @@ class ApplicationController < Sinatra::Base
   post "/login" do
     user = User.find_by(:username => params[:username])
 		if user && user.authenticate(params[:password])
-			session[:id] = user.id
+			session[:user_id] = user.id
 			redirect '/account'
-    else !user && !user.authenticate(params[:password])
+    else #!user && !user.authenticate(params[:password]) else's can't give it a condition, only elsif's, if any elsifs don't work then the else
 			redirect "/failure"
 		end
   #   #your code here
